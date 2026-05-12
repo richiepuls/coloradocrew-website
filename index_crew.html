@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colorado Crew | Sport Clubs | University of Colorado Boulder</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:     #CFB87C;
+  --gold-dk:  #b8a265;
+  --gold-lt:  #e8d9ab;
+  --black:    #000000;
+  --dgray:    #565A5C;
+  --lgray:    #A2A4A3;
+  --white:    #FFFFFF;
+  --off:      #F6F5F2;
+  --font:     'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --hdr-h:    56px;
+  --sec-h:    96px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--black); background: var(--white); overflow-x: hidden; }
+
+/* ── SKIP LINK ─────────────────────────── */
+.skip-link {
+  position: absolute; top: -40px; left: 0;
+  background: var(--gold); color: var(--black);
+  padding: 8px 16px; font-size: 14px; font-weight: 700;
+  text-decoration: none; z-index: 9999;
+  transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── GLOBAL HEADER ─────────────────────── */
+.global-hdr {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--black); height: var(--hdr-h);
+  display: flex; align-items: center;
+  justify-content: space-between; padding: 0 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.global-hdr__logo {
+  display: flex; align-items: center;
+  text-decoration: none;
+}
+.global-hdr__logo img { height: 26px; display: block; }
+.global-hdr__logo-fb {
+  display: none; font-family: var(--font); font-size: 13px;
+  font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white);
+}
+.global-hdr__nav { display: flex; align-items: center; gap: 28px; }
+.global-hdr__nav a {
+  font-family: var(--font); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--lgray); text-decoration: none; transition: color .2s;
+}
+.global-hdr__nav a:hover { color: var(--gold); }
+
+/* ── SECTION HEADER ────────────────────── */
+.section-hdr {
+  background: var(--white); min-height: var(--sec-h);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 30px 40px; border-bottom: 3px solid var(--gold);
+}
+.section-hdr__title {
+  font-family: var(--font); font-size: 30px; font-weight: 700;
+  letter-spacing: -0.01em; color: var(--black); line-height: 1;
+}
+.section-hdr__sub {
+  font-family: var(--font); font-size: 14px; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--dgray); margin-top: 7px;
+}
+.section-hdr__nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.section-hdr__nav a {
+  font-family: var(--font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.09em; text-transform: uppercase;
+  text-decoration: none; color: var(--black);
+  padding: 9px 16px; border: 1.5px solid rgba(0,0,0,0.25);
+  transition: background .18s, color .18s, border-color .18s; white-space: nowrap;
+}
+.section-hdr__nav a:hover { background: var(--black); color: var(--gold); border-color: var(--black); }
+.section-hdr__nav a.cta { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.section-hdr__nav a.cta:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
+
+/* ── HERO ───────────────────────────────
+   Full-bleed photo bg anchored to Image 2
+   (Boulder Reservoir / Flatirons shot).
+   SWAP: replace hero-bg src with any
+   full-width team photo.               */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 620px;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+}
+.hero__img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 55%;
+  display: block;
+}
+/* Dark gradient overlay for text legibility */
+.hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.25) 0%,
+    rgba(0,0,0,.15) 35%,
+    rgba(0,0,0,.72) 75%,
+    rgba(0,0,0,.92) 100%
+  );
+}
+/* Fallback if photo doesn't load */
+.hero__fallback {
+  position: absolute; inset: 0;
+  background: var(--black);
+  z-index: -1;
+}
+.hero__body {
+  position: relative; z-index: 2;
+  padding: 0 64px 72px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+  gap: 48px;
+}
+.hero__left {}
+.hero__eyebrow {
+  font-family: var(--font); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero__eyebrow::before {
+  content: ''; display: block;
+  width: 28px; height: 1px; background: var(--gold);
+}
+.hero__title {
+  font-family: var(--font);
+  font-size: clamp(68px, 11vw, 128px);
+  font-weight: 700; line-height: .88;
+  letter-spacing: -0.04em; color: var(--white);
+  margin-bottom: 24px;
+}
+.hero__title span { color: var(--gold); }
+.hero__desc {
+  font-family: var(--font); font-size: 16px; line-height: 1.7;
+  color: rgba(255,255,255,.7); max-width: 480px; margin-bottom: 32px;
+}
+.hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-gold {
+  font-family: var(--font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  padding: 13px 26px;
+  background: var(--gold); color: var(--black);
+  border: 2px solid var(--gold);
+  transition: background .2s, border-color .2s;
+}
+.btn-gold:hover { background: var(--gold-dk); border-color: var(--gold-dk); }
+.btn-outline-wh {
+  font-family: var(--font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  padding: 13px 26px;
+  background: transparent; color: var(--white);
+  border: 2px solid rgba(255,255,255,.32);
+  transition: border-color .2s, background .2s;
+}
+.btn-outline-wh:hover { border-color: var(--white); background: rgba(255,255,255,.06); }
+.btn-dark {
+  font-family: var(--font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; display: inline-block;
+  padding: 13px 26px;
+  background: var(--black); color: var(--white);
+  border: 2px solid var(--black);
+  transition: background .2s, color .2s;
+}
+.btn-dark:hover { background: transparent; color: var(--black); }
+
+/* Hero stats panel */
+.hero__stats {
+  background: var(--gold);
+  display: flex; flex-direction: column;
+  min-width: 180px; flex-shrink: 0;
+}
+.hero__stat {
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(0,0,0,.12);
+}
+.hero__stat:last-child { border-bottom: none; }
+.hero__stat__n {
+  font-family: var(--font); font-size: 32px; font-weight: 700;
+  letter-spacing: -0.025em; color: var(--black); line-height: 1;
+}
+.hero__stat__l {
+  font-family: var(--font); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(0,0,0,.5); margin-top: 4px;
+}
+
+/* ── ABOUT ──────────────────────────────── */
+.about {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1240px; margin: 0 auto;
+  padding: 100px 64px;
+}
+.eyebrow {
+  font-family: var(--font); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold-dk); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content:''; width:22px; height:2px; background: var(--gold); }
+.about__heading {
+  font-family: var(--font); font-size: clamp(30px, 3.5vw, 44px);
+  font-weight: 700; letter-spacing: -0.02em; line-height: 1.1;
+  color: var(--black); margin-bottom: 22px;
+}
+.about__p {
+  font-family: var(--font); font-size: 16px; line-height: 1.75;
+  color: var(--dgray); margin-bottom: 16px;
+}
+.about__callout {
+  border-left: 4px solid var(--gold); background: var(--off);
+  padding: 18px 22px; margin-top: 24px;
+}
+.about__callout__label {
+  font-family: var(--font); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--black); margin-bottom: 7px;
+}
+.about__callout p {
+  font-family: var(--font); font-size: 14px; line-height: 1.65;
+  color: var(--dgray);
+}
+.about__callout a { color: var(--black); font-weight: 600; }
+
+/* Photo inside about — uses uploaded image 3 (Barry Sinkey) as action shot */
+.about__photo {
+  position: relative;
+}
+.about__photo__img {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover; object-position: center;
+  display: block;
+}
+.about__photo__fallback {
+  width: 100%; aspect-ratio: 4/3;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+}
+.about__badge {
+  position: absolute; bottom: -20px; left: -20px;
+  width: 104px; height: 104px; background: var(--gold);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.about__badge__n {
+  font-family: var(--font); font-size: 28px; font-weight: 700;
+  color: var(--black); line-height: 1;
+}
+.about__badge__l {
+  font-family: var(--font); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(0,0,0,.5); margin-top: 4px;
+}
+
+/* ── STATS ──────────────────────────────── */
+.stats { background: var(--dgray); padding: 80px 40px; }
+.stats__inner { max-width: 1240px; margin: 0 auto; }
+.stats__hd {
+  font-family: var(--font); font-size: 34px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--white);
+  margin-bottom: 36px; line-height: 1;
+}
+.stats__grid {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 3px;
+}
+.stat-card {
+  background: rgba(255,255,255,.055); padding: 32px 24px;
+  border-top: 3px solid transparent;
+  transition: border-color .2s, background .2s;
+}
+.stat-card:hover { border-top-color: var(--gold); background: rgba(255,255,255,.09); }
+.stat-card__val {
+  font-family: var(--font); font-size: 44px; font-weight: 700;
+  letter-spacing: -0.03em; color: var(--gold); line-height: 1; margin-bottom: 7px;
+}
+.stat-card__lbl {
+  font-family: var(--font); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  color: var(--lgray); margin-bottom: 10px;
+}
+.stat-card__det {
+  font-family: var(--font); font-size: 13px; line-height: 1.6;
+  color: rgba(255,255,255,.38);
+}
+
+/* ── UPCOMING RACES ─────────────────────
+   Styled to echo the Race Week social
+   graphic aesthetic. To update races:
+   edit the .race-card elements in HTML.  */
+.races { background: var(--black); padding: 88px 40px; }
+.races__inner { max-width: 1240px; margin: 0 auto; }
+.races__header {
+  display: flex; align-items: flex-end;
+  justify-content: space-between; gap: 24px;
+  margin-bottom: 44px; padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  flex-wrap: wrap;
+}
+.races__title-block {}
+.races__eyebrow {
+  font-family: var(--font); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 10px;
+}
+.races__eyebrow::before { content:''; width:22px; height:1px; background: var(--gold); }
+.races__hd {
+  font-family: var(--font); font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700; letter-spacing: -0.03em; line-height: .92;
+  color: var(--white);
+}
+.races__hd span { color: var(--gold); }
+
+.races__grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 3px;
+}
+
+/* Each card echoes the team's Race Week poster aesthetic */
+.race-card {
+  background: #0d0d0d;
+  border-top: 3px solid var(--gold);
+  padding: 32px 28px;
+  position: relative; overflow: hidden;
+  transition: background .2s;
+  text-decoration: none; display: block;
+}
+.race-card:hover { background: #161616; }
+
+/* Corner oar accent */
+.race-card::after {
+  content: '';
+  position: absolute; top: -16px; right: -16px;
+  width: 56px; height: 56px;
+  border: 2px solid rgba(207,184,124,.18);
+  transform: rotate(45deg);
+}
+
+.race-card__label {
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 18px;
+  display: flex; align-items: center; gap: 8px;
+}
+/* Pulsing dot = upcoming */
+.race-card__label::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .4; transform: scale(.75); }
+}
+
+.race-card__name {
+  font-family: var(--font); font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700; letter-spacing: -0.01em; line-height: 1.1;
+  color: var(--white); margin-bottom: 10px;
+}
+.race-card__sub {
+  font-family: var(--font); font-size: 13px; line-height: 1.5;
+  color: rgba(255,255,255,.4); margin-bottom: 24px;
+}
+.race-card__meta {
+  display: flex; gap: 0; flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 20px; gap: 10px;
+}
+.race-card__row {
+  display: flex; align-items: center; gap: 10px;
+}
+.race-card__icon {
+  width: 16px; height: 16px; flex-shrink: 0; opacity: .45;
+}
+.race-card__val {
+  font-family: var(--font); font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.75); letter-spacing: 0.01em;
+}
+.race-card__tag {
+  display: inline-block; margin-top: 14px;
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 10px;
+  background: var(--gold); color: var(--black);
+}
+.race-card__tag.tag-outline {
+  background: transparent; color: var(--gold);
+  border: 1px solid rgba(207,184,124,.4);
+}
+
+/* ── PHOTO GALLERY ───────────────────────
+   Rolling carousel. To add/replace images:
+   1. Add/swap <li class="gal__slide"> items
+   2. Change src= to your image URL or path
+   Images: pulled from CU Sport Clubs site.
+   Replace with updated team photos each
+   season.                                  */
+.gallery { background: var(--off); padding: 80px 0; }
+.gallery__inner { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.gallery__hdr {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px;
+}
+.gallery__title {
+  font-family: var(--font); font-size: clamp(26px, 3.5vw, 38px);
+  font-weight: 700; letter-spacing: -0.02em;
+  color: var(--black); line-height: 1;
+}
+.gallery__controls { display: flex; gap: 8px; }
+.gallery__btn {
+  width: 44px; height: 44px; background: var(--black); color: var(--white);
+  border: none; cursor: pointer; display: flex;
+  align-items: center; justify-content: center;
+  transition: background .2s; font-size: 18px;
+}
+.gallery__btn:hover { background: var(--gold); color: var(--black); }
+
+/* Track container */
+.gallery__track-wrap {
+  overflow: hidden; position: relative;
+}
+.gallery__track {
+  display: flex;
+  transition: transform .55s cubic-bezier(.4,0,.2,1);
+  gap: 3px;
+}
+/* Each slide = 33.33% of visible area */
+.gal__slide {
+  flex: 0 0 calc(33.333% - 2px);
+  aspect-ratio: 4/3;
+  overflow: hidden; position: relative;
+}
+.gal__slide img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  display: block;
+  transition: transform .4s ease;
+}
+.gal__slide:hover img { transform: scale(1.04); }
+
+/* Placeholder tile when image unavailable */
+.gal__placeholder {
+  width: 100%; height: 100%;
+  background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+}
+
+/* Dot indicators */
+.gallery__dots {
+  display: flex; gap: 6px; justify-content: center; margin-top: 22px;
+}
+.gallery__dot {
+  width: 6px; height: 6px; background: var(--lgray);
+  border: none; cursor: pointer; padding: 0;
+  transition: background .2s, width .2s;
+}
+.gallery__dot.active { background: var(--gold); width: 22px; }
+
+/* ── SCHEDULE ───────────────────────────── */
+.season { background: var(--white); padding: 80px 40px; }
+.season__inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 72px; align-items: start;
+}
+.season__intro { position: sticky; top: calc(var(--hdr-h) + 20px); }
+.season__title {
+  font-family: var(--font); font-size: 36px; font-weight: 700;
+  letter-spacing: -0.025em; line-height: 1.1;
+  color: var(--black); margin-bottom: 14px;
+}
+.season__title span { color: var(--dgray); font-weight: 400; display: block; }
+.season__note {
+  font-family: var(--font); font-size: 14px; line-height: 1.7;
+  color: var(--dgray); margin-bottom: 20px;
+}
+.season__note-box {
+  border-left: 3px solid var(--gold); background: var(--off);
+  padding: 14px 18px; margin-bottom: 22px;
+}
+.season__note-box strong {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 4px; color: var(--black);
+}
+.season__note-box p {
+  font-family: var(--font); font-size: 13px; line-height: 1.6;
+  color: var(--dgray);
+}
+.season__note-box a { color: var(--black); font-weight: 700; }
+.race-list { list-style: none; }
+.race-item {
+  display: grid; grid-template-columns: 52px 1fr auto;
+  gap: 18px; align-items: center;
+  padding: 22px 0; border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.race-item:first-child { border-top: 1px solid rgba(0,0,0,.1); }
+.race-mo {
+  font-family: var(--font); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold-dk);
+}
+.race-name {
+  font-family: var(--font); font-size: 15px; font-weight: 700;
+  color: var(--black); margin-bottom: 3px;
+}
+.race-loc {
+  font-family: var(--font); font-size: 13px; color: var(--dgray);
+}
+.tag {
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 4px 10px; white-space: nowrap;
+  background: var(--dgray); color: var(--white);
+}
+.tag-gold { background: var(--gold); color: var(--black); }
+
+/* ── GET INVOLVED ───────────────────────── */
+.join { background: var(--black); padding: 80px 40px; }
+.join__inner {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+}
+.join__block { border-top: 3px solid var(--gold); padding-top: 28px; }
+.join__lbl {
+  font-family: var(--font); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+.join__heading {
+  font-family: var(--font); font-size: 26px; font-weight: 700;
+  letter-spacing: -0.015em; line-height: 1.15;
+  color: var(--white); margin-bottom: 14px;
+}
+.join__p {
+  font-family: var(--font); font-size: 15px; line-height: 1.7;
+  color: rgba(255,255,255,.55); margin-bottom: 24px;
+}
+
+/* ── SOCIAL ─────────────────────────────── */
+.social { background: var(--white); border-top: 1px solid rgba(0,0,0,.08); padding: 72px 40px; }
+.social__inner {
+  max-width: 1240px; margin: 0 auto;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 40px; flex-wrap: wrap;
+}
+.social__hd { font-family: var(--font); font-size: 26px; font-weight: 700; letter-spacing: -0.01em; color: var(--black); margin-bottom: 6px; }
+.social__sub { font-family: var(--font); font-size: 14px; color: var(--dgray); }
+.social__links { display: flex; gap: 10px; flex-wrap: wrap; }
+.social__link {
+  font-family: var(--font); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  text-decoration: none; color: var(--black);
+  padding: 11px 18px;
+  border: 2px solid rgba(0,0,0,.2);
+  display: flex; align-items: center; gap: 8px;
+  transition: background .18s, color .18s, border-color .18s;
+}
+.social__link:hover { background: var(--black); color: var(--gold); border-color: var(--black); }
+.social__link svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ── LAND ACKNOWLEDGMENT ────────────────── */
+.land-ack { background: var(--lgray); padding: 28px 40px; }
+.land-ack__inner { max-width: 1240px; margin: 0 auto; }
+.land-ack p { font-family: var(--font); font-size: 13px; line-height: 1.75; color: var(--black); }
+.land-ack a { color: var(--black); font-weight: 600; }
+
+/* ── FOOTER ─────────────────────────────── */
+footer { background: var(--black); padding: 56px 40px 32px; }
+.footer__inner { max-width: 1240px; margin: 0 auto; }
+.footer__grid {
+  display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 56px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid rgba(255,255,255,.09);
+  margin-bottom: 28px;
+}
+.footer__logo img { height: 32px; display: block; margin-bottom: 14px; }
+.footer__logo-fb {
+  display: none; font-family: var(--font); font-size: 18px;
+  font-weight: 700; letter-spacing: 0.06em; color: var(--white); margin-bottom: 14px;
+}
+.footer__tagline { font-family: var(--font); font-size: 13px; line-height: 1.65; color: rgba(255,255,255,.38); }
+.footer__col-lbl {
+  font-family: var(--font); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+}
+.footer__col ul { list-style: none; }
+.footer__col ul li { margin-bottom: 10px; }
+.footer__col ul a {
+  font-family: var(--font); font-size: 13px;
+  color: rgba(255,255,255,.52); text-decoration: none; transition: color .2s;
+}
+.footer__col ul a:hover { color: var(--gold); }
+.footer__contact p { font-family: var(--font); font-size: 13px; line-height: 1.85; color: rgba(255,255,255,.52); }
+.footer__contact a { color: var(--gold); text-decoration: none; }
+.footer__btm { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.footer__copy { font-family: var(--font); font-size: 12px; line-height: 1.7; color: rgba(255,255,255,.3); }
+.footer__copy a { color: inherit; text-decoration: none; }
+.footer__links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer__links a { font-family: var(--font); font-size: 12px; color: rgba(255,255,255,.3); text-decoration: none; transition: color .2s; }
+.footer__links a:hover { color: var(--gold); }
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media (max-width: 1024px) {
+  .races__grid { grid-template-columns: repeat(2,1fr); }
+  .gal__slide { flex: 0 0 calc(50% - 1.5px); }
+}
+@media (max-width: 860px) {
+  .global-hdr { padding: 0 24px; }
+  .section-hdr { flex-direction: column; align-items: flex-start; gap: 16px; padding: 22px 24px; }
+  .hero__body { grid-template-columns: 1fr; padding: 0 28px 56px; }
+  .hero__stats { flex-direction: row; }
+  .hero__stat { border-bottom: none; border-right: 1px solid rgba(0,0,0,.12); flex: 1; }
+  .hero__stat:last-child { border-right: none; }
+  .about { grid-template-columns: 1fr; gap: 48px; padding: 72px 28px; }
+  .about__photo { padding-bottom: 24px; }
+  .stats { padding: 64px 28px; }
+  .stats__grid { grid-template-columns: repeat(2,1fr); }
+  .races { padding: 64px 28px; }
+  .races__grid { grid-template-columns: 1fr; gap: 3px; }
+  .gallery__inner { padding: 0 24px; }
+  .gal__slide { flex: 0 0 calc(100% - 0px); }
+  .season { padding: 64px 28px; }
+  .season__inner { grid-template-columns: 1fr; gap: 40px; }
+  .season__intro { position: static; }
+  .join { padding: 64px 28px; }
+  .join__inner { grid-template-columns: 1fr; gap: 48px; }
+  .social { padding: 56px 28px; }
+  .social__inner { flex-direction: column; align-items: flex-start; }
+  .land-ack { padding: 24px 28px; }
+  footer { padding: 48px 28px 28px; }
+  .footer__grid { grid-template-columns: 1fr; gap: 36px; }
+}
+@media (max-width: 580px) {
+  .hero__title { font-size: 58px; }
+  .hero__stats { display: none; }
+  .stats__grid { grid-template-columns: 1fr; }
+  .global-hdr__nav { display: none; }
+  .race-item { grid-template-columns: 44px 1fr; }
+  .tag { display: none; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ═══════════════════════════════════════════
+  GLOBAL / CAMPUS HEADER
+  Brand: black bg | CU Boulder logo | min 50px
+════════════════════════════════════════════ -->
+<header class="global-hdr" role="banner">
+  <a href="https://www.colorado.edu" class="global-hdr__logo" aria-label="University of Colorado Boulder home">
+    <img
+      src="https://cdn.colorado.edu/static/brand-assets/live/images/cu-boulder-logo-text-white.svg"
+      alt="University of Colorado Boulder"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+    <span class="global-hdr__logo-fb">University of Colorado Boulder</span>
+  </a>
+  <nav class="global-hdr__nav" aria-label="Site navigation">
+    <a href="https://www.colorado.edu/sportclubs/">Sport Clubs</a>
+    <a href="https://www.colorado.edu/studentlife/">Student Life</a>
+    <a href="https://www.colorado.edu">CU Boulder</a>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════════════════════
+  LOCAL / SECTION HEADER
+  Brand: white bg | text-only | min 90px
+════════════════════════════════════════════ -->
+<div class="section-hdr" role="navigation" aria-label="Club navigation">
+  <div class="section-hdr__left">
+    <div class="section-hdr__title">Colorado Crew</div>
+    <div class="section-hdr__sub">Co-ed Sport Club / Founded 1992</div>
+  </div>
+  <nav class="section-hdr__nav" aria-label="Club quick links">
+    <a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew-roster">Roster</a>
+    <a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/crew-schedule-and-results">Schedule</a>
+    <a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/contact">Contact</a>
+    <a href="https://giveto.colorado.edu/campaigns/51704/donations/new">Donate</a>
+    <a href="https://forms.gle/zaaLpJ3Exz9GXc7C8" class="cta">Join the Team</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  HERO
+  Photo background: Boulder Reservoir /
+  Flatirons (Image 2 anchor).
+  SWAP hero-bg src to update the hero photo.
+════════════════════════════════════════════ -->
+<main id="main-content">
+<section class="hero" aria-label="Colorado Crew hero">
+
+  <!-- SWAP THIS IMAGE to update the hero background -->
+  <img
+    class="hero__img"
+    src="https://www.colorado.edu/sportclubs/sites/default/files/styles/slider_widescreen/public/2025-01/DSC05082.JPG"
+    alt="Colorado Crew rowing on the Boulder Reservoir with the Flatirons in the background"
+    onerror="this.style.display='none'">
+  <div class="hero__fallback" aria-hidden="true"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+
+  <div class="hero__body">
+    <div class="hero__left">
+      <p class="hero__eyebrow">University of Colorado Boulder / Sport Clubs</p>
+      <h1 class="hero__title">Colorado<br><span>Crew</span></h1>
+      <p class="hero__desc">
+        Club rowing at the foot of the Rockies. Practicing at the Boulder Reservoir and competing across the country. Every stroke built on teamwork since 1992.
+      </p>
+      <div class="hero__ctas">
+        <a href="https://forms.gle/zaaLpJ3Exz9GXc7C8" class="btn-gold">Join the Team</a>
+        <a href="https://giveto.colorado.edu/campaigns/51704/donations/new" class="btn-outline-wh">Donate</a>
+      </div>
+    </div>
+
+    <div class="hero__stats" aria-label="Club at a glance">
+      <div class="hero__stat">
+        <div class="hero__stat__n">45+</div>
+        <div class="hero__stat__l">Rowers</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat__n">7</div>
+        <div class="hero__stat__l">Regattas</div>
+      </div>
+      <div class="hero__stat">
+        <div class="hero__stat__n">'92</div>
+        <div class="hero__stat__l">Founded</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  ABOUT
+════════════════════════════════════════════ -->
+<section style="background:var(--white);" aria-labelledby="about-heading">
+<div class="about">
+  <div>
+    <p class="eyebrow" aria-hidden="true">About the Club</p>
+    <h2 class="about__heading" id="about-heading">Where the Rockies<br>Meet the Water</h2>
+    <p class="about__p">
+      Colorado Crew is a club rowing team founded in 1992 that strives to encourage and push the limits of its members through practice and competition. It is the ultimate team sport, with every individual working together toward the same goal.
+    </p>
+    <p class="about__p">
+      We practice at the Boulder Reservoir and travel across the country to compete. Strong bonds, lasting memories, and open to all experience levels.
+    </p>
+    <div class="about__callout">
+      <div class="about__callout__label">Rent-a-Rower Fundraising Program</div>
+      <p>Crew members available for hire for odd jobs that help fund team dues. Reach out to <a href="mailto:crewjobs@colorado.edu">crewjobs@colorado.edu</a>.</p>
+    </div>
+  </div>
+
+  <div class="about__photo" aria-hidden="true">
+    <!-- SWAP src to update the about section photo -->
+    <img
+      class="about__photo__img"
+      src="https://www.colorado.edu/sportclubs/sites/default/files/styles/slider_widescreen/public/2024-08/e1189070-e77a-4357-b678-ce3ca260%20%282%29.jpg"
+      alt="Colorado Crew team on the water"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="about__photo__fallback" style="display:none">
+      <span style="font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2)">Team Photo</span>
+    </div>
+    <div class="about__badge">
+      <span class="about__badge__n">1992</span>
+      <span class="about__badge__l">Est.</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  CLUB STATS
+════════════════════════════════════════════ -->
+<section class="stats" aria-labelledby="stats-heading">
+  <div class="stats__inner">
+    <h2 class="stats__hd" id="stats-heading">Club at a Glance</h2>
+    <div class="stats__grid">
+      <div class="stat-card">
+        <div class="stat-card__val">1</div>
+        <div class="stat-card__lbl">Head Coach</div>
+        <div class="stat-card__det">Professional coaching staff leading daily practices at the Boulder Reservoir</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__val">45+</div>
+        <div class="stat-card__lbl">Members</div>
+        <div class="stat-card__det">Women's team: 20 rowers / Men's team: 25 rowers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__val">7</div>
+        <div class="stat-card__lbl">Regattas</div>
+        <div class="stat-card__det">Season runs October through May, competing nationally</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__val">ACRA</div>
+        <div class="stat-card__lbl">Affiliation</div>
+        <div class="stat-card__det">US Rowing member / American Collegiate Rowing Association</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  UPCOMING RACES
+  Design anchor: Race Week social graphics
+  (Images 1 and 3).
+
+  TO UPDATE RACES:
+  - Edit each .race-card block in this section
+  - Update name, date, location, type
+  - Add/remove cards as needed
+  - Change .race-card__tag class:
+      no class = gray (regular race)
+      tag-gold  = gold (championship)
+════════════════════════════════════════════ -->
+<section class="races" id="races" aria-labelledby="races-heading">
+  <div class="races__inner">
+    <div class="races__header">
+      <div class="races__title-block">
+        <div class="races__eyebrow">2025 / 2026 Season</div>
+        <h2 class="races__hd" id="races-heading">Upcoming<br><span>Races</span></h2>
+      </div>
+      <a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/crew-schedule-and-results" class="btn-gold" style="flex-shrink:0;">Full Schedule</a>
+    </div>
+
+    <div class="races__grid">
+
+      <!-- RACE CARD 1 -->
+      <div class="race-card">
+        <div class="race-card__label">Upcoming</div>
+        <div class="race-card__name">Barry Sinkey Memorial Regatta</div>
+        <div class="race-card__sub">Home regatta at the Boulder Reservoir</div>
+        <div class="race-card__meta">
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="12" rx="1" stroke="#CFB87C" stroke-width="1.2"/>
+              <path d="M5 1v4M11 1v4M1 7h14" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="race-card__val">September 20, 2025</span>
+          </div>
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5z" stroke="#CFB87C" stroke-width="1.2"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#CFB87C" stroke-width="1.2"/>
+            </svg>
+            <span class="race-card__val">Boulder, Colorado</span>
+          </div>
+        </div>
+        <span class="race-card__tag">Fall / Home</span>
+      </div>
+
+      <!-- RACE CARD 2 -->
+      <div class="race-card">
+        <div class="race-card__label">Upcoming</div>
+        <div class="race-card__name">Wichita Frostbite Regatta</div>
+        <div class="race-card__sub">Late-season head race competition</div>
+        <div class="race-card__meta">
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="12" rx="1" stroke="#CFB87C" stroke-width="1.2"/>
+              <path d="M5 1v4M11 1v4M1 7h14" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="race-card__val">November 3, 2025</span>
+          </div>
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5z" stroke="#CFB87C" stroke-width="1.2"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#CFB87C" stroke-width="1.2"/>
+            </svg>
+            <span class="race-card__val">Wichita, Kansas</span>
+          </div>
+        </div>
+        <span class="race-card__tag">Fall</span>
+      </div>
+
+      <!-- RACE CARD 3 -->
+      <div class="race-card">
+        <div class="race-card__label">Upcoming</div>
+        <div class="race-card__name">Dad Vail Regatta</div>
+        <div class="race-card__sub">One of the largest collegiate regattas in the country</div>
+        <div class="race-card__meta">
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="12" rx="1" stroke="#CFB87C" stroke-width="1.2"/>
+              <path d="M5 1v4M11 1v4M1 7h14" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="race-card__val">Spring 2026</span>
+          </div>
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5z" stroke="#CFB87C" stroke-width="1.2"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#CFB87C" stroke-width="1.2"/>
+            </svg>
+            <span class="race-card__val">Philadelphia, Pennsylvania</span>
+          </div>
+        </div>
+        <span class="race-card__tag tag-outline">Spring</span>
+      </div>
+
+      <!-- RACE CARD 4 -->
+      <div class="race-card">
+        <div class="race-card__label">Upcoming</div>
+        <div class="race-card__name">ACRA Regional Championships</div>
+        <div class="race-card__sub">American Collegiate Rowing Association</div>
+        <div class="race-card__meta">
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="12" rx="1" stroke="#CFB87C" stroke-width="1.2"/>
+              <path d="M5 1v4M11 1v4M1 7h14" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="race-card__val">April 2026</span>
+          </div>
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5z" stroke="#CFB87C" stroke-width="1.2"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#CFB87C" stroke-width="1.2"/>
+            </svg>
+            <span class="race-card__val">TBD</span>
+          </div>
+        </div>
+        <span class="race-card__tag tag-outline">Spring / Regional</span>
+      </div>
+
+      <!-- RACE CARD 5 -->
+      <div class="race-card">
+        <div class="race-card__label">Upcoming</div>
+        <div class="race-card__name">ACRA National Championship</div>
+        <div class="race-card__sub">Season finale / American Collegiate Rowing Association Nationals</div>
+        <div class="race-card__meta">
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="12" rx="1" stroke="#CFB87C" stroke-width="1.2"/>
+              <path d="M5 1v4M11 1v4M1 7h14" stroke="#CFB87C" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+            <span class="race-card__val">May 2026</span>
+          </div>
+          <div class="race-card__row">
+            <svg class="race-card__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.5C5.515 1.5 3.5 3.515 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5c0-2.485-2.015-4.5-4.5-4.5z" stroke="#CFB87C" stroke-width="1.2"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#CFB87C" stroke-width="1.2"/>
+            </svg>
+            <span class="race-card__val">TBD</span>
+          </div>
+        </div>
+        <span class="race-card__tag" style="background:var(--gold);color:var(--black);">Nationals</span>
+      </div>
+
+      <!-- ADD RACE CARD: copy a .race-card block above and paste here -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  PHOTO GALLERY CAROUSEL
+  Rolling image panel with auto-advance.
+
+  TO UPDATE IMAGES:
+  1. Add new <li class="gal__slide"> items
+  2. Replace src= with your image URL/path
+  3. Update alt text to describe each photo
+  4. Images auto-cycle every 5 seconds
+  5. Dots and arrows update automatically
+════════════════════════════════════════════ -->
+<section class="gallery" aria-labelledby="gallery-heading">
+  <div class="gallery__inner">
+    <div class="gallery__hdr">
+      <h2 class="gallery__title" id="gallery-heading">On the Water</h2>
+      <div class="gallery__controls">
+        <button class="gallery__btn" id="gal-prev" aria-label="Previous photos">&#8592;</button>
+        <button class="gallery__btn" id="gal-next" aria-label="Next photos">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="gallery__track-wrap" aria-live="polite">
+      <ul class="gallery__track" id="galTrack" role="list" style="list-style:none;padding:0;margin:0;">
+
+        <!-- SLIDE 1 — SWAP src to update -->
+        <li class="gal__slide">
+          <img
+            src="https://www.colorado.edu/sportclubs/sites/default/files/styles/slider_widescreen/public/2025-01/DSC05082.JPG"
+            alt="Colorado Crew team photo"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="gal__placeholder" style="display:none">Photo 1</div>
+        </li>
+
+        <!-- SLIDE 2 — SWAP src to update -->
+        <li class="gal__slide">
+          <img
+            src="https://www.colorado.edu/sportclubs/sites/default/files/styles/slider_widescreen/public/2025-01/Screen%20Shot%202024-10-30%20at%2011.35.39%20AM.png"
+            alt="Colorado Crew racing on the water"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="gal__placeholder" style="display:none">Photo 2</div>
+        </li>
+
+        <!-- SLIDE 3 — SWAP src to update -->
+        <li class="gal__slide">
+          <img
+            src="https://www.colorado.edu/sportclubs/sites/default/files/styles/slider_widescreen/public/2024-08/e1189070-e77a-4357-b678-ce3ca260%20%282%29.jpg"
+            alt="Colorado Crew eights racing at a regatta"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="gal__placeholder" style="display:none">Photo 3</div>
+        </li>
+
+        <!-- SLIDE 4 — placeholder: replace with team photo -->
+        <li class="gal__slide">
+          <div class="gal__placeholder" style="display:flex;">Add Photo 4</div>
+        </li>
+
+        <!-- SLIDE 5 — placeholder: replace with team photo -->
+        <li class="gal__slide">
+          <div class="gal__placeholder" style="display:flex;">Add Photo 5</div>
+        </li>
+
+        <!-- SLIDE 6 — placeholder: replace with team photo -->
+        <li class="gal__slide">
+          <div class="gal__placeholder" style="display:flex;">Add Photo 6</div>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="gallery__dots" id="galDots" role="tablist" aria-label="Gallery position"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  FULL SCHEDULE LIST
+════════════════════════════════════════════ -->
+<section class="season" id="schedule" aria-labelledby="season-heading">
+  <div class="season__inner">
+    <div class="season__intro">
+      <p class="eyebrow" aria-hidden="true">Season</p>
+      <h2 class="season__title" id="season-heading">Racing<br><span>Oct / May</span></h2>
+      <p class="season__note">
+        Seven regattas each season, from fall head races to spring sprint competitions, culminating at the ACRA National Championship.
+      </p>
+      <div class="season__note-box">
+        <strong>Live Results</strong>
+        <p>Check the <a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/crew-schedule-and-results">full schedule page</a> for current dates and results.</p>
+      </div>
+      <a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/crew-schedule-and-results" class="btn-dark">View Full Schedule</a>
+    </div>
+
+    <ul class="race-list" aria-label="Season schedule overview">
+      <li class="race-item">
+        <div class="race-mo">Sep</div>
+        <div>
+          <div class="race-name">Barry Sinkey Memorial Regatta</div>
+          <div class="race-loc">Boulder Reservoir, CO / Home Regatta</div>
+        </div>
+        <span class="tag">Fall</span>
+      </li>
+      <li class="race-item">
+        <div class="race-mo">Nov</div>
+        <div>
+          <div class="race-name">Wichita Frostbite Regatta</div>
+          <div class="race-loc">Wichita, KS</div>
+        </div>
+        <span class="tag">Fall</span>
+      </li>
+      <li class="race-item">
+        <div class="race-mo">Mar</div>
+        <div>
+          <div class="race-name">Spring Season Opener</div>
+          <div class="race-loc">Sprint racing begins / Venue TBD</div>
+        </div>
+        <span class="tag">Spring</span>
+      </li>
+      <li class="race-item">
+        <div class="race-mo">Apr</div>
+        <div>
+          <div class="race-name">Dad Vail Regatta</div>
+          <div class="race-loc">Philadelphia, PA / One of the largest collegiate regattas</div>
+        </div>
+        <span class="tag">Spring</span>
+      </li>
+      <li class="race-item">
+        <div class="race-mo">Apr</div>
+        <div>
+          <div class="race-name">ACRA Regional Championships</div>
+          <div class="race-loc">American Collegiate Rowing Association</div>
+        </div>
+        <span class="tag">Spring</span>
+      </li>
+      <li class="race-item">
+        <div class="race-mo">May</div>
+        <div>
+          <div class="race-name">ACRA National Championship</div>
+          <div class="race-loc">American Collegiate Rowing Association Nationals</div>
+        </div>
+        <span class="tag tag-gold">National</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  GET INVOLVED
+════════════════════════════════════════════ -->
+<section class="join" id="join" aria-labelledby="join-heading">
+  <div class="join__inner">
+    <div class="join__block">
+      <div class="join__lbl">New Members</div>
+      <h2 class="join__heading" id="join-heading">No Experience Required</h2>
+      <p class="join__p">
+        Colorado Crew welcomes rowers of all backgrounds and experience levels. Whether you have never touched an oar or rowed in high school, there is a place for you on the water.
+      </p>
+      <a href="https://forms.gle/zaaLpJ3Exz9GXc7C8" class="btn-gold">Fill Out Interest Form</a>
+    </div>
+    <div class="join__block">
+      <div class="join__lbl">Support the Team</div>
+      <h2 class="join__heading">Help Us Stay on the Water</h2>
+      <p class="join__p">
+        Colorado Crew is entirely self-funded. Your donation goes directly toward equipment, travel, and regatta entry fees. Seven officers, one coach, and a passion for the sport.
+      </p>
+      <a href="https://giveto.colorado.edu/campaigns/51704/donations/new" class="btn-gold">Donate to Colorado Crew</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+  SOCIAL
+════════════════════════════════════════════ -->
+<section class="social" aria-labelledby="social-heading">
+  <div class="social__inner">
+    <div>
+      <h2 class="social__hd" id="social-heading">Follow the Buffs on the Water</h2>
+      <p class="social__sub">Race updates, practice highlights, and team news</p>
+    </div>
+    <div class="social__links">
+      <a href="https://www.instagram.com/cubuffsrowing/" class="social__link" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/ColoradoCrew/" class="social__link" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+      <a href="https://www.youtube.com/channel/UCDauFSG1XLrTa2cbByVidLw" class="social__link" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        YouTube
+      </a>
+      <a href="https://www.tiktok.com/@coloradocrew1993" class="social__link" target="_blank" rel="noopener" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        TikTok
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- Land acknowledgment -->
+<div class="land-ack">
+  <div class="land-ack__inner">
+    <p>CU Boulder acknowledges that it is located on the traditional territories and ancestral homelands of the Cheyenne, Arapaho, Ute and many other Native American nations. Their forced removal from these territories has caused devastating and lasting impacts. <a href="https://www.colorado.edu/about/land-acknowledgement">Full CU Boulder land acknowledgment</a></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+  FOOTER
+  Required: copyright, privacy, terms, name,
+  contact info (CU brand spec)
+════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="footer__inner">
+    <div class="footer__grid">
+      <div>
+        <div class="footer__logo">
+          <img src="https://cdn.colorado.edu/static/brand-assets/live/images/be-boulder-white.svg"
+               alt="Be Boulder."
+               onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+          <span class="footer__logo-fb">BE BOULDER.</span>
+        </div>
+        <p class="footer__tagline">University of Colorado Boulder<br>Sport Clubs Program<br>Division of Student Life</p>
+      </div>
+      <div class="footer__col">
+        <div class="footer__col-lbl">Quick Links</div>
+        <ul>
+          <li><a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew-roster">Team Roster</a></li>
+          <li><a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/crew-schedule-and-results">Schedule and Results</a></li>
+          <li><a href="https://forms.gle/zaaLpJ3Exz9GXc7C8">Interest Form</a></li>
+          <li><a href="https://www.colorado.edu/sportclubs/co-ed-sports/crew/contact">Contact the Club</a></li>
+          <li><a href="https://giveto.colorado.edu/campaigns/51704/donations/new">Donate to Crew</a></li>
+          <li><a href="https://www.colorado.edu/sportclubs/">All Sport Clubs</a></li>
+        </ul>
+      </div>
+      <div class="footer__col footer__contact">
+        <div class="footer__col-lbl">Contact</div>
+        <p>
+          Colorado Crew<br>
+          Sport Clubs Program<br>
+          Division of Student Life<br>
+          University of Colorado Boulder<br>
+          <br>
+          Rent-a-Rower inquiries:<br>
+          <a href="mailto:crewjobs@colorado.edu">crewjobs@colorado.edu</a>
+        </p>
+      </div>
+    </div>
+    <div class="footer__btm">
+      <div class="footer__copy">
+        &copy; Regents of the University of Colorado<br>
+        <a href="https://www.colorado.edu">University of Colorado Boulder</a>
+      </div>
+      <nav class="footer__links" aria-label="Footer legal links">
+        <a href="https://www.colorado.edu/compliance/policies/privacy-statement">Privacy</a>
+        <a href="https://www.cu.edu/terms-service">Terms of Use</a>
+        <a href="https://www.colorado.edu/about/legal-trademarks">Legal and Trademarks</a>
+        <a href="https://www.colorado.edu/map">Campus Map</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+  GALLERY CAROUSEL SCRIPT
+  Responsive: shows 3 slides on desktop,
+  2 on tablet, 1 on mobile.
+  Auto-advances every 5s, pauses on hover.
+════════════════════════════════════════════ -->
+<script>
+(function() {
+  const track   = document.getElementById('galTrack');
+  const dotsEl  = document.getElementById('galDots');
+  const prevBtn = document.getElementById('gal-prev');
+  const nextBtn = document.getElementById('gal-next');
+  if (!track) return;
+
+  const slides  = Array.from(track.querySelectorAll('.gal__slide'));
+  let current   = 0;
+  let timer     = null;
+  let perView   = getSlidesPerView();
+
+  function getSlidesPerView() {
+    if (window.innerWidth <= 580) return 1;
+    if (window.innerWidth <= 1024) return 2;
+    return 3;
+  }
+
+  function totalPositions() {
+    return Math.max(1, slides.length - perView + 1);
+  }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    const n = totalPositions();
+    for (let i = 0; i < n; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'gallery__dot' + (i === current ? ' active' : '');
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-label', 'Go to slide group ' + (i + 1));
+      btn.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(btn);
+    }
+  }
+
+  function goTo(idx) {
+    const n = totalPositions();
+    current = ((idx % n) + n) % n;
+    const slideW = slides[0].offsetWidth + 3;
+    track.style.transform = 'translateX(-' + (current * slideW) + 'px)';
+    buildDots();
+    restartTimer();
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  function startTimer() {
+    timer = setInterval(next, 5000);
+  }
+  function restartTimer() {
+    clearInterval(timer);
+    startTimer();
+  }
+
+  prevBtn.addEventListener('click', () => { prev(); });
+  nextBtn.addEventListener('click', () => { next(); });
+
+  track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
+  track.parentElement.addEventListener('mouseleave', startTimer);
+
+  /* Touch/swipe */
+  let touchX = 0;
+  track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+  }, { passive: true });
+
+  /* Recalculate on resize */
+  let resizeT;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => {
+      const pv = getSlidesPerView();
+      if (pv !== perView) {
+        perView = pv;
+        current = 0;
+      }
+      goTo(current);
+    }, 150);
+  });
+
+  buildDots();
+  startTimer();
+})();
+</script>
+
+</body>
+</html>
